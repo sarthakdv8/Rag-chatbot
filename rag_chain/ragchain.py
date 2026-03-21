@@ -7,7 +7,7 @@ class simple_rag_chain:
     def __init__(self):
         self.retriever=retriever()
         if not GROQ_API_KEY:
-            raise ValueError("GROQ_API_KEY is not set in the environment variables.")
+            raise RuntimeError("GROQ_API_KEY is not set in the environment variables.")
         self.client=Groq(api_key=GROQ_API_KEY)
         
     def invoke(self,inputs):
@@ -27,9 +27,9 @@ class simple_rag_chain:
             if not text:
                 continue
             meta=getattr(doc,"metadata",{}) or {}
-            src=meta.get("source","unknown source")
+            src=meta.get("source","unknown")
             page=meta.get("page")
-            label=f"[{idx}]"
+            label=f"S[{idx}]"
             header=f"[{label}] Source: {src}"
             if page is not None:
                 header+=f", Page: {page}"

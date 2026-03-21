@@ -10,4 +10,4 @@ def retriever():
     embeddings=get_embedding_function()
     vs=get_vectorstore(embeddings)
     # a method in langchain to get the similiarity based retriever
-    vs.as_retriever(search_type="similarity",search_kwargs={"k":TOP_K})
+    return vs.as_retriever(search_type="similarity",search_kwargs={"k":TOP_K})

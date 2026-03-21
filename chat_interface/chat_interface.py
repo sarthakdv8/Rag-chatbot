@@ -9,7 +9,7 @@ def run_cli():
     while True:
         try:
             query=input("You:").strip()
-        except:
+        except(EOFError, KeyboardInterrupt):
             print("\nGoodbye!")
             break
         if not query:

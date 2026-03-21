@@ -11,7 +11,7 @@ from pypdf import PdfReader
 
 
 
-def load_document(dir_path:Path)->list[Document]:
+def load_document(dir_path:Path)->list:
     docs=[]
     dir_path=Path(dir_path)
     if not dir_path.exists():
