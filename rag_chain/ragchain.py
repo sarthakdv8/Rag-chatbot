@@ -1,7 +1,16 @@
 # Building rag-chain
 from groq import Groq
-from config import GROQ_API_KEY, GROQ_MODEL_NAME
+from config import GROQ_API_KEY, GROQ_MODEL_NAME,DATA_DIR
 from retriever.retriever import retriever
+
+
+def get_load_document():
+    # Scans the folder and return the list of document name.
+    docs=[]
+    for p in DATA_DIR.rglob("*"):
+        if p.is_file() and p.suffix.lower() in {".txt", ".md", ".pdf"}:
+            docs.append(p.name)
+    return docs
 
 class simple_rag_chain:
     def __init__(self):
@@ -68,9 +77,9 @@ class simple_rag_chain:
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_msg},
             ],
-            temperature=0.1,
+            temperature=0.5,
             top_p=1.0,
-            max_tokens=384,
+            max_tokens=3000,
         )
         answer = completion.choices[0].message.content.strip()
         

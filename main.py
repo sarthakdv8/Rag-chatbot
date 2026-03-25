@@ -1,5 +1,5 @@
 import argparse
-from chat_interface.chat_interface import run_cli
+from chat_interface.chat_interface import run_cli,startup_info
 from ingestion.ingest_data import ingest_data
 
 
@@ -15,8 +15,11 @@ def main():
         n=ingest_data()
         print("main.py is running")
         print(f"Ingested {n} chunks ")
+
     run_cli()
+    
     
 if __name__=="__main__":    
     main()
+        
         
